@@ -1,5 +1,3 @@
-https://youtu.be/qRRW9IY8KeU?si=DJU309pz91egNOCT
-
 
 create table faculty(
     id int identity(1,1) primary key,
