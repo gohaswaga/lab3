@@ -1,0 +1,59 @@
+https://youtu.be/qRRW9IY8KeU?si=DJU309pz91egNOCT
+
+
+create table faculty(
+    id int identity(1,1) primary key,
+    faculty_name nvarchar(50)
+);
+
+create table form(
+    id int identity(1,1) primary key, 
+    form_name nvarchar(30)
+);
+
+create table stud(
+    id int identity(1,1) primary key,
+    last_name nvarchar(30),
+    f_name nvarchar(30),
+    s_name nvarchar(30),
+    br_date date,
+    in_date date,
+    exm int 
+);
+
+create table teach(
+    id int identity(1,1) primary key,
+    last_name nvarchar(30),
+    f_name nvarchar(30),
+    s_name nvarchar(30),
+    br_date date,
+    start_work_date date
+);
+
+create table subj(
+    id int identity(1,1) primary key,
+    subj nvarchar(100),
+    [hours] int
+);
+
+create table [hours](
+    id int identity(1,1) primary key,
+    cours int,
+    faculty_id int foreign key references faculty(id),
+    form_id int foreign key references form(id),   
+    all_h int,
+    inclass_h int
+);
+
+create table process(
+    stud_id int foreign key references stud(id),   
+    hours_id int foreign key references [hours](id),
+    primary key (stud_id, hours_id) 
+);
+ 
+create table work(
+    teach_id int foreign key references teach(id),
+    subj_id int foreign key references subj(id),
+    hours_id int foreign key references [hours](id),
+    primary key (teach_id, subj_id, hours_id)
+);
